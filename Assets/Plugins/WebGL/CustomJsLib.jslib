@@ -62,6 +62,7 @@ mergeInto(LibraryManager.library, {
       console.log('SendReactPostMessage, message sent: ' + message);
       if(window.ReactNativeWebView)
       {
+        console.log("Calling window.ReactNativeWebView");
         if(message == "authToken"){
           var injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
           var injectedObj = JSON.parse(injectedObjectJson);
@@ -93,6 +94,7 @@ mergeInto(LibraryManager.library, {
       {
         if(message == "authToken")
         {
+          console.log("Calling window.parent.addEventListener");
           window.addEventListener('message', function(event){
             if(event.data.type === 'authToken'){
               var combinedData = JSON.stringify({
