@@ -5891,6 +5891,7 @@ MonoBehaviour:
   slotManager: {fileID: 2046803210}
   audioController: {fileID: 3828329615797410143}
   socketManager: {fileID: 500036492}
+  jsFunctCalls: {fileID: 1476692586}
   SettingsPopUpObject: {fileID: 1872753414}
   Setting_button: {fileID: 1381781567}
   Setting_close_button: {fileID: 443850791}

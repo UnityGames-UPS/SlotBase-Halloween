@@ -523,7 +523,7 @@ public class SlotBehaviour : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        audioController.CheckFocusFunction(focus, CheckSpinAudio);
+        audioController.SetMuteAll(!focus);
     }
 
     private void StartSlots(bool autoSpin = false)

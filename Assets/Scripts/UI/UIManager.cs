@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private SlotBehaviour slotManager;
     [SerializeField] private AudioController audioController;
     [SerializeField] private SocketIOManager socketManager;
+    [SerializeField] private JSFunctCalls jsFunctCalls;
 
 
     [Header("settings PopUp")]
@@ -116,6 +117,20 @@ public class UIManager : MonoBehaviour
     //    if (spalsh_screen) spalsh_screen.SetActive(true);
     //    StartCoroutine(LoadingRoutine());
     //}
+
+    private void Awake()
+    {
+        if (jsFunctCalls != null)
+            jsFunctCalls.RegisterVisibilityListener(gameObject.name);
+    }
+
+    public void OnFocusChanged(string value)
+    {
+        bool focused = value == "1";
+        Debug.Log("UNITY FOCUS CHANGED: " + value + " (focused: " + focused + ")");
+        if (audioController) audioController.SetMuteAll(!focused);
+        if (socketManager) socketManager.HandleFocusChange(focused);
+    }
 
     private void Start()
     {

@@ -24,10 +24,41 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioClip Ghost_win_Audio;
     [SerializeField] private AudioClip WitchLaughAudio;
 
+    private List<AudioSource> allSources;
+    private readonly Dictionary<AudioSource, bool> preFocusMuteState = new Dictionary<AudioSource, bool>();
+    private bool isForceMuted = false;
+
     private void Start()
     {
         playBgAudio();
         //audioPlayer_button.clip = clips[clips.Length - 1];
+        allSources = new List<AudioSource> { bg_adudio, audioPlayer_wl, audioPlayer_button, audioPlayer_Spin, ghostAudioPlayer, witchAudioPlayer };
+    }
+
+    // Driven independently by both the WebGL JS focus bridge and Unity's native
+    // OnApplicationFocus (Check 2/3): blur force-mutes every source, focus restores each
+    // source's own mute flag as last set by ToggleMute (the user's chosen setting) — never
+    // force-unmutes. Guarded by isForceMuted so a second blur/focus call from the other path
+    // doesn't re-capture the already-forced state (which would permanently clobber the user's
+    // real setting).
+    internal void SetMuteAll(bool forceMute)
+    {
+        if (forceMute == isForceMuted) return;
+        isForceMuted = forceMute;
+
+        foreach (var source in allSources)
+        {
+            if (source == null) continue;
+            if (forceMute)
+            {
+                preFocusMuteState[source] = source.mute;
+                source.mute = true;
+            }
+            else
+            {
+                source.mute = preFocusMuteState.TryGetValue(source, out bool prevMuted) ? prevMuted : source.mute;
+            }
+        }
     }
 
     internal void PlayWLAudio(string type, float pitch=1)
@@ -62,34 +93,6 @@ public class AudioController : MonoBehaviour
     }
 
 
-
-    internal void CheckFocusFunction(bool focus, bool IsSpinning)
-    {
-        if (!focus)
-        {
-
-            bg_adudio.Pause();
-            audioPlayer_wl.Pause();
-            audioPlayer_button.Pause();
-            audioPlayer_Spin.Pause();
-        }
-        else
-        {
-            if (!bg_adudio.mute) bg_adudio.UnPause();
-            if (IsSpinning)
-            {
-                if (!audioPlayer_wl.mute) audioPlayer_wl.UnPause();
-                audioPlayer_Spin.UnPause();
-            }
-            else
-            {
-                StopWLAaudio();
-                audioPlayer_Spin.Stop();
-            }
-            if (!audioPlayer_button.mute) audioPlayer_button.UnPause();
-
-        }
-    }
 
     internal void PlayGhostAudio(float pitch=1) {
 
