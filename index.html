@@ -36,6 +36,7 @@
 
   <canvas id="unity-canvas" tabindex="-1"></canvas>
   <script>
+    console.log('[TEMPLATE] index.html inline script running');
     const canvas = document.querySelector("#unity-canvas");
     var unityInstance = null;   // captured on load; jslib listeners use it as a SendMessage fallback
     var lastProgressSent = -1;
@@ -95,9 +96,11 @@
       createUnityInstance(canvas, config, (progress) => {
         sendProgressToPlatform(progress);
       }).then((instance) => {
+        console.log('[TEMPLATE] createUnityInstance resolved');
         unityInstance = instance;
         resizeCanvas();
       }).catch((message) => {
+        console.error('[TEMPLATE] createUnityInstance rejected:', message);
         alert(message);
       });
     };
