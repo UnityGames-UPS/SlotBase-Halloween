@@ -13,7 +13,7 @@ public class ManageLineButtons : MonoBehaviour, IPointerEnterHandler,IPointerExi
 	private PayoutCalculation payManager;
 	[SerializeField]
 	private GameObject _ConnectedLine;
-	internal bool isEnabled = true;
+	private bool isEnabled = true;
 
 #if UNITY_EDITOR
 	public void OnPointerEnter(PointerEventData eventData)

@@ -25,7 +25,7 @@ public class SocketIOManager : MonoBehaviour
     internal Player PlayerData = null;
     internal Root GambleData = null;
     internal Root BonusData = new();
-    internal List<List<int>> LineData = null;
+    private List<List<int>> LineData = null;
 
     //[SerializeField] internal List<string> bonusdata = null;
 
@@ -33,12 +33,12 @@ public class SocketIOManager : MonoBehaviour
     private Socket gameSocket;
     protected string nameSpace = "playground";
 
-    [SerializeField] internal JSFunctCalls JSManager;
+    [SerializeField] private JSFunctCalls JSManager;
 
     //[SerializeField]
     //    internal JSHandler _jsManager;
 
-    internal double GambleLimit = 0;
+    private double GambleLimit = 0;
     private string SocketURI = null;
     [SerializeField] private string TestSocketURI = "http://localhost:5000/";
     // protected string TestSocketURI = "https://sl3l5zz3-5000.inc1.devtunnels.ms/";
@@ -53,7 +53,7 @@ public class SocketIOManager : MonoBehaviour
     protected string gameID = "SL-HAL";
     //protected string gameID = "";
     internal bool isLoading = true;
-    internal bool SetInit = false;
+    private bool SetInit = false;
     private bool isConnected = false; //Back2 Start
     private bool hasEverConnected = false;
     private const int MaxReconnectAttempts = 5;
@@ -144,7 +144,7 @@ public class SocketIOManager : MonoBehaviour
 
     string myAuth = null;
 
-    internal bool isLoaded = false;
+    private bool isLoaded = false;
 
     private void Awake()
     {

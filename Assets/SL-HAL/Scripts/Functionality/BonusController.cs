@@ -24,7 +24,7 @@ public class BonusController : MonoBehaviour
     internal bool isOpening;
     internal bool isFinished;
     private double totalWin;
-    internal double bet { get; private set; }
+    private double bet { get; set; }
     internal bool WaitForBonusResult = true;
     internal void StartBonusGame() // List<double> values, double betperline
     {

@@ -16,9 +16,9 @@ public class PayoutCalculation : MonoBehaviour
     [SerializeField]
     private GameObject[] Lines_Object;
 
-    internal int LineCount;
+    private int LineCount;
 
-    internal int currrentLineIndex;
+    private int currrentLineIndex;
 
     internal List<int> DontDestroy = new List<int>();
 
@@ -27,8 +27,8 @@ public class PayoutCalculation : MonoBehaviour
     
     [SerializeField]
     private Vector2 InitialLinePosition = new Vector2(-315, 100);
-    [SerializeField] internal List<int> LineList;
-    [SerializeField] internal List<int> DontDestroyLines = new List<int>();
+    [SerializeField] private List<int> LineList;
+    [SerializeField] private List<int> DontDestroyLines = new List<int>();
     GameObject TempObj = null;
 
     
@@ -52,7 +52,7 @@ public class PayoutCalculation : MonoBehaviour
     }
 
 
-    internal void ResetStaticLine()
+    private void ResetStaticLine()
     {
         if(TempObj!=null)
         {
@@ -69,7 +69,7 @@ public class PayoutCalculation : MonoBehaviour
         }
     }
 
-    internal void SetButtonActive(int LineCounter)
+    private void SetButtonActive(int LineCounter)
     {
         currrentLineIndex = LineCounter;
 

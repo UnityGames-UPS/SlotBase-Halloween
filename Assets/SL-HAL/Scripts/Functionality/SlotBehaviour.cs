@@ -160,12 +160,12 @@ public class SlotBehaviour : MonoBehaviour
 
     private bool StopSpinToggle;
     private bool IsTurboOn;
-    internal bool WasAutoSpinOn = false;
+    private bool WasAutoSpinOn = false;
     private float SpinDelay = 0.2f;
     private Sprite turboOriginalSprite;
 
 
-    public static List<List<int>> initialGrid = new List<List<int>>()
+    private static List<List<int>> initialGrid =new List<List<int>>()
     {
         new List<int>() { 8, 0, 7},
         new List<int>() { 10, 8, 7},
@@ -173,7 +173,7 @@ public class SlotBehaviour : MonoBehaviour
         new List<int>() { 10, 8, 7},
         new List<int>() { 8, 10, 7}
     };
-    public static List<List<int>> initialAnimGrid = new List<List<int>>()
+    private static List<List<int>> initialAnimGrid =new List<List<int>>()
     {
         new List<int>() { 10, 10, 10},
         new List<int>() { 10, 10, 10},
@@ -288,7 +288,7 @@ public class SlotBehaviour : MonoBehaviour
         uiManager.InitialiseUIData(SocketManager.UIData.paylines);
     }
 
-    internal void StopAutoSpin()
+    private void StopAutoSpin()
     {
         if (IsAutoSpin)
         {
@@ -426,12 +426,12 @@ public class SlotBehaviour : MonoBehaviour
 
 
 
-    internal void PopulateInitalSlots(int number, List<int> myvalues)
+    private void PopulateInitalSlots(int number, List<int> myvalues)
     {
         PopulateSlot(myvalues, number);
     }
 
-    internal void LayoutReset(int number)
+    private void LayoutReset(int number)
     {
         if (Slot_Elements[number]) Slot_Elements[number].ignoreLayout = true;
         if (SlotStart_Button) SlotStart_Button.interactable = true;

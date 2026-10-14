@@ -6,11 +6,11 @@ using System;
 public class AudioController : MonoBehaviour
 {
     [SerializeField] private AudioSource bg_adudio;
-    [SerializeField] internal AudioSource audioPlayer_wl;
-    [SerializeField] internal AudioSource audioPlayer_button;
-    [SerializeField] internal AudioSource audioPlayer_Spin;
-    [SerializeField] internal AudioSource ghostAudioPlayer;
-    [SerializeField] internal AudioSource witchAudioPlayer;
+    [SerializeField] private AudioSource audioPlayer_wl;
+    [SerializeField] private AudioSource audioPlayer_button;
+    [SerializeField] private AudioSource audioPlayer_Spin;
+    [SerializeField] private AudioSource ghostAudioPlayer;
+    [SerializeField] private AudioSource witchAudioPlayer;
 
     [SerializeField] private AudioClip SpinButtonClip;
     [SerializeField] private AudioClip SpinClip;
@@ -188,7 +188,7 @@ public class AudioController : MonoBehaviour
         audioPlayer_wl.loop = false;
     }
 
-    internal void StopButtonAudio()
+    private void StopButtonAudio()
     {
 
         audioPlayer_button.Stop();
@@ -196,7 +196,7 @@ public class AudioController : MonoBehaviour
     }
 
 
-    internal void StopBgAudio()
+    private void StopBgAudio()
     {
         bg_adudio.Stop();
 
